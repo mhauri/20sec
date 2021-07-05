@@ -47,7 +47,7 @@ h1 {
 }
 
 .item {
-    @apply bg-white w-full cursor-pointer transform transition duration-200 hover:shadow-xl relative hover:-translate-y-1;
+    @apply bg-white w-full cursor-pointer transform transition duration-100 hover:shadow-xl relative hover:-translate-y-1;
 }
 
 .item a {
@@ -55,7 +55,7 @@ h1 {
 }
 
 .item__content {
-    @apply p-5;
+    @apply p-5 pb-12;
 }
 
 .item__title {
@@ -68,4 +68,8 @@ h1 {
 
 .item__image img {
     object-fit: cover;
+}
+
+.item__type {
+    @apply absolute bottom-0 right-0 bg-blue-500 text-white p-2 text-xs;
 }

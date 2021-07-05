@@ -62,6 +62,9 @@ export default function Search() {
                   <div className={"item__lead"}>
                     <p>{content.lead}</p>
                   </div>
+                  <div className={"item__type"}>
+                    {type.slice(0, -1)}
+                  </div>
                 </a>
               </div>
             </div>
