@@ -19,6 +19,7 @@ export default function Search() {
 
   const fetchData = async () => {
     setIsFetching(true);
+    console.log(start)
     const result = await axios({
         method: 'GET',
         url: 'https://feed-prod.unitycms.io/6/search',
@@ -27,13 +28,16 @@ export default function Search() {
     );
     setData(result.data);
     setHasMore(result.data.nextpage !== 'undefined');
-    setStart(start + 20)
     setIsFetching(false);
   };
 
   useEffect(() => {
-    fetchData();
+    setStart(1)
   }, [search]);
+
+  useEffect(() => {
+    fetchData();
+  }, [start]);
 
   return (
     <div ref={searchRef} id={"top"}>
@@ -90,7 +94,7 @@ export default function Search() {
           })}
         </div>
       )}
-      {hasMore && <a href={"#top"} onClick={() => fetchData()} className={"button__more"}>weiter</a>}
+      {hasMore && <a href={"#top"} onClick={() => setStart(start + 20)} className={"button__more"}>weiter</a>}
     </div>
   )
 }
