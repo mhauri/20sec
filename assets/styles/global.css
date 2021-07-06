@@ -6,6 +6,9 @@ body {
     @apply bg-blue-50;
 }
 
+.app {
+    @apply flex flex-col h-screen justify-between;
+}
 .footer {
     @apply bg-blue-100 flex flex-col items-center justify-center w-full h-auto border-t px-10;
 }

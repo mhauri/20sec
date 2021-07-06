@@ -7,33 +7,33 @@ export default function Search() {
   moment.locale('de');
   const searchRef = createRef()
   const [query, setQuery] = useState('');
-  const [search, setSearch] = useState('%20%20%20');
+  const [search, setSearch] = useState('');
   const [data, setData] = useState({hits: []});
-  const [start, setStart] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
+  const [next, setNext] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
 
   const onSubmit = useCallback((event) => {
     event.preventDefault();
   })
 
-  const fetchData = async () => {
-    const result = await axios({
-        method: 'GET',
-        url: 'https://feed-prod.unitycms.io/6/search',
-        params: {q: search, start: start}
-      }
-    );
-    setData(result.data);
-    setHasMore(result.data.nextpage !== 'undefined');
+  const fetchData = async (search, start) => {
+    if (search !== '') {
+      const result = await axios({
+          method: 'GET',
+          url: 'https://feed-prod.unitycms.io/6/search',
+          params: {q: search, start: start}
+        }
+      );
+      setSearch(search)
+      setData(result.data);
+      setNext(start + 20)
+      setHasMore(result.data.nextpage !== 'undefined');
+    }
   };
 
   useEffect(() => {
-    setStart(1)
-  }, [search]);
-
-  useEffect(() => {
-    fetchData();
-  }, [start]);
+    fetchData('%20%20%20', 1);
+  }, []);
 
   return (
     <div ref={searchRef} id={"top"}>
@@ -50,7 +50,7 @@ export default function Search() {
             value={query}
             className={"query"}
           />
-          <button onClick={() => setSearch(query)}
+          <button onClick={() => fetchData(query, 1)}
                   className={"button"}>Suche
           </button>
         </form>
@@ -90,7 +90,7 @@ export default function Search() {
           })}
         </div>
       )}
-      {hasMore && <a href={"#top"} onClick={() => setStart(start + 20)} className={"button__more"}>weiter</a>}
+      {hasMore && <a href={"#top"} onClick={() => fetchData(search, next)} className={"button__more"}>weiter</a>}
     </div>
   )
 }

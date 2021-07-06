@@ -4,7 +4,7 @@ import Search from "../components/search";
 
 export default function Home() {
   return (
-    <div>
+    <div className={"app"}>
       <Head>
         <title>20Sec - Die fehlende 20Minuten Suchfunktion</title>
         <link rel="icon" href="/favicon.ico"/>
