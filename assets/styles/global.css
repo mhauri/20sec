@@ -27,7 +27,11 @@ form {
 }
 
 .button {
-    @apply ml-5 bg-blue-800 text-white py-2 px-3 rounded-md shadow-sm text-sm leading-4 font-medium hover:bg-blue-900;
+    @apply md:ml-5 bg-blue-800 text-white py-2 px-3 rounded-md shadow-sm text-sm leading-4 font-medium hover:bg-blue-900 mt-5 md:mt-0;
+}
+
+.button__more {
+    @apply mx-auto block mb-5 bg-blue-800 text-white py-3 rounded-md shadow-sm text-sm leading-4 font-medium hover:bg-blue-900 w-24 text-center;
 }
 
 a {
@@ -59,7 +63,15 @@ h1 {
 }
 
 .item__title {
-    @apply font-bold text-lg mb-5;
+    @apply font-bold text-xl mb-5;
+}
+
+.item__titleHeader {
+    @apply font-bold text-sm uppercase mb-1;
+}
+
+.item__date {
+    @apply absolute bottom-0 left-0 px-5 py-2 text-xs;
 }
 
 .item__image {
@@ -71,5 +83,22 @@ h1 {
 }
 
 .item__type {
-    @apply absolute bottom-0 right-0 bg-blue-500 text-white p-2 text-xs;
+    @apply absolute bottom-0 right-0 my-1;
+}
+
+.item__type span {
+    @apply bg-blue-500 text-white p-2 text-xs ml-2;
+}
+
+.item__type span.videos {
+    @apply bg-purple-600;
+}
+
+.item__type span.tickers {
+    @apply bg-yellow-600;
+}
+
+.item__type span.breaking,
+.item__type span.live {
+    @apply bg-red-700;
 }
