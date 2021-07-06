@@ -10,7 +10,6 @@ export default function Search() {
   const [search, setSearch] = useState('%20%20%20');
   const [data, setData] = useState({hits: []});
   const [start, setStart] = useState(1);
-  const [isFetching, setIsFetching] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
   const onSubmit = useCallback((event) => {
@@ -18,8 +17,6 @@ export default function Search() {
   })
 
   const fetchData = async () => {
-    setIsFetching(true);
-    console.log(start)
     const result = await axios({
         method: 'GET',
         url: 'https://feed-prod.unitycms.io/6/search',
@@ -28,7 +25,6 @@ export default function Search() {
     );
     setData(result.data);
     setHasMore(result.data.nextpage !== 'undefined');
-    setIsFetching(false);
   };
 
   useEffect(() => {
