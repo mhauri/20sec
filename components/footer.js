@@ -1,9 +1,7 @@
-import HeartIcon from "./heart";
-
 export default function Footer() {
   return (
     <footer className="footer">
-      <p className={"copyright"}>Erstellt mit <HeartIcon/> von <a href={"https://marcelhauri.ch"}>Marcel Hauri</a> |
+      <p className={"copyright"}>Erstellt von <a href={"https://marcelhauri.ch"}>Marcel Hauri</a> |
         Source: <a href={"https://github.com/mhauri/20sec"}>GitHub</a></p>
       <p className={"disclaimer"}>
         <strong>Haftungsausschluss:</strong> <br/>Ich bin nicht mit der TX Group oder einer ihrer Tochtergesellschaften

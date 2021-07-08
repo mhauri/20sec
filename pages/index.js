@@ -16,7 +16,21 @@ export default function Home() {
         <meta name="theme-color" content="#ffffff"/>
         <meta name="robots" content="noindex,nofollow"/>
       </Head>
-      <main>
+      <main id={"top"}>
+        <div className={"logo"}>
+          <div className={"logo__container"}>
+            <div className={"log__item"}>
+              <a href={"/"}>
+                <img src={"/apple-touch-icon.png"} alt={"Die fehlende 20 Minuten Suchfunktion"}/>
+              </a>
+            </div>
+            <div className={"log__item"}>
+              <a href={"/"}>
+                <h1>Die fehlende 20 Minuten Suchfunktion</h1>
+              </a>
+            </div>
+          </div>
+        </div>
         <Search/>
       </main>
       <Footer/>

@@ -36,11 +36,9 @@ export default function Search() {
   }, []);
 
   return (
-    <div ref={searchRef} id={"top"}>
+    <div ref={searchRef}>
       <header className={"header"}>
         <form onSubmit={onSubmit}>
-          <h1><a href={"/"}><img src={"/apple-touch-icon.png"} className={"inline w-24"} alt={"20sec"}/></a> <br/>Die
-            fehlende 20 Minuten Suchfunktion</h1>
           <br/>
           <input
             onChange={event => setQuery(event.target.value)}
