@@ -9,6 +9,7 @@ body {
 .app {
     @apply flex flex-col h-screen justify-between;
 }
+
 .footer {
     @apply bg-gray-900 flex flex-col items-center justify-center w-full h-auto border-t border-gray-600 px-10;
 }
@@ -42,7 +43,7 @@ h1 {
 }
 
 form {
-    @apply max-w-7xl mx-auto text-center;
+    @apply max-w-7xl mx-auto text-center relative;
 }
 
 .disclaimer {
@@ -57,18 +58,20 @@ form {
     @apply md:ml-5 bg-pink-600 text-white py-2 px-3 rounded-md shadow-sm text-sm leading-4 font-medium hover:bg-pink-900 mt-5 md:mt-0;
 }
 
-.button__more {
-    @apply mx-auto block mb-5 bg-pink-600 text-white py-3 rounded-md shadow-sm text-sm leading-4 font-medium hover:bg-pink-900 w-24 text-center;
+.button--more {
+    @apply mx-auto block mb-5  py-3 w-24 text-center;
 }
 
 a {
     @apply text-pink-600;
 }
 
-
-
 .header {
-    @apply p-5;
+    @apply p-5 relative;
+}
+
+.loading {
+    @apply absolute w-full text-center h-6 mt-5 mx-auto;
 }
 
 .list {

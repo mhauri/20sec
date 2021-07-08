@@ -1,4 +1,6 @@
 import {useCallback, createRef, useState, useEffect} from 'react'
+import React from 'react';
+import Link from 'next/link'
 import axios from 'axios';
 import moment from "moment";
 
@@ -9,6 +11,7 @@ export default function Search() {
   const [query, setQuery] = useState('');
   const [search, setSearch] = useState('');
   const [data, setData] = useState({hits: []});
+  const [isLoading, setIsLoading] = useState(false);
   const [next, setNext] = useState(1);
   const [hasMore, setHasMore] = useState(false);
 
@@ -18,6 +21,7 @@ export default function Search() {
 
   const fetchData = async (search, start) => {
     if (search !== '') {
+      setIsLoading(true)
       const result = await axios({
           method: 'GET',
           url: 'https://feed-prod.unitycms.io/6/search',
@@ -28,8 +32,17 @@ export default function Search() {
       setData(result.data);
       setNext(start + 20)
       setHasMore(result.data.nextpage !== 'undefined');
+      setIsLoading(false)
     }
   };
+
+  const LoadMoreButton = React.forwardRef(({onClick, href}, ref) => {
+    return (
+      <a href={href} onClick={() => fetchData(search, next)} ref={ref} className={"button button--more"}>
+        weiter
+      </a>
+    )
+  })
 
   useEffect(() => {
     fetchData('%20%20%20', 1);
@@ -52,6 +65,7 @@ export default function Search() {
                   className={"button"}>Suche
           </button>
         </form>
+        {isLoading && <div className={"loading"}>Suche läuft ...</div>}
       </header>
       {data && data.content && data.content.length > 0 && (
         <div className={"list"}>
@@ -88,7 +102,10 @@ export default function Search() {
           })}
         </div>
       )}
-      {hasMore && <a href={"#top"} onClick={() => fetchData(search, next)} className={"button__more"}>weiter</a>}
+      {hasMore && <Link href={"#top"} passHref>
+        <LoadMoreButton/>
+      </Link>
+      }
     </div>
   )
 }

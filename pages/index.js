@@ -19,12 +19,12 @@ export default function Home() {
       <main id={"top"}>
         <div className={"logo"}>
           <div className={"logo__container"}>
-            <div className={"log__item"}>
+            <div className={"logo__item"}>
               <a href={"/"}>
                 <img src={"/apple-touch-icon.png"} alt={"Die fehlende 20 Minuten Suchfunktion"}/>
               </a>
             </div>
-            <div className={"log__item"}>
+            <div className={"logo__item"}>
               <a href={"/"}>
                 <h1>Die fehlende 20 Minuten Suchfunktion</h1>
               </a>
