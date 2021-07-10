@@ -54,6 +54,11 @@ form {
     @apply h-full py-3 px-3 border-2 border-gray-700 bg-gray-800 text-gray-200 sm:text-sm rounded-lg w-full md:w-1/2 focus:outline-none;
 }
 
+.select {
+    @apply bg-gray-800;
+    margin-left: -50px;
+}
+
 .button {
     @apply md:ml-5 bg-pink-600 text-white py-2 px-3 rounded-md shadow-sm text-sm leading-4 font-medium hover:bg-pink-900 mt-5 md:mt-0;
 }
