@@ -9,6 +9,7 @@ export default function Search() {
   const searchRef = createRef();
   const [query, setQuery] = useState("");
   const [search, setSearch] = useState("");
+  const [tenantId, setTenantId] = useState("6");
   const [data, setData] = useState({ hits: [] });
   const [isLoading, setIsLoading] = useState(false);
   const [next, setNext] = useState(1);
@@ -18,12 +19,12 @@ export default function Search() {
     event.preventDefault();
   });
 
-  const fetchData = async (search, start) => {
+  const fetchData = async (search, start, tenantId) => {
     if (search !== "") {
       setIsLoading(true);
       const result = await axios({
         method: "GET",
-        url: "https://feed-prod.unitycms.io/6/search",
+        url: `https://feed-prod.unitycms.io/${tenantId}/search`,
         params: { q: search, start: start },
       });
       setSearch(search);
@@ -38,7 +39,7 @@ export default function Search() {
     return (
       <a
         href={href}
-        onClick={() => fetchData(search, next)}
+        onClick={() => fetchData(search, next, tenantId)}
         ref={ref}
         className={"button button--more"}
       >
@@ -48,7 +49,7 @@ export default function Search() {
   });
 
   useEffect(() => {
-    fetchData("%20%20%20", 1);
+    fetchData("%20%20%20", 1, tenantId);
   }, []);
 
   return (
@@ -64,11 +65,12 @@ export default function Search() {
             value={query}
             className={"query"}
           />
-          <select name="tenant_id" className="select">
+          <select value={tenantId} className="select" onChange={(event) => setTenantId(event.target.value)}
+            >
             <option value="6">DE</option>
             <option value="4">FR</option>
           </select>
-          <button onClick={() => fetchData(query, 1)} className={"button"}>
+          <button onClick={() => fetchData(query, 1, tenantId)} className={"button"}>
             Suche
           </button>
         </form>
