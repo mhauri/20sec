@@ -64,6 +64,10 @@ export default function Search() {
             value={query}
             className={"query"}
           />
+          <select name="tenant_id" className="select">
+            <option value="6">DE</option>
+            <option value="4">FR</option>
+          </select>
           <button onClick={() => fetchData(query, 1)} className={"button"}>
             Suche
           </button>
