@@ -9,6 +9,7 @@ export default function Search() {
   const searchRef = createRef();
   const [query, setQuery] = useState("");
   const [search, setSearch] = useState("");
+  const [urlPrefix, setUrlPrefix] = useState("");
   const [tenantId, setTenantId] = useState("6");
   const [data, setData] = useState({ hits: [] });
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +30,7 @@ export default function Search() {
       });
       setSearch(search);
       setData(result.data);
+      setUrlPrefix(tenantId === "7" ? "/fr" : "");
       setNext(start + 20);
       setHasMore(result.data.nextpage !== "undefined");
       setIsLoading(false);
@@ -68,7 +70,7 @@ export default function Search() {
           <select value={tenantId} className="select" onChange={(event) => setTenantId(event.target.value)}
             >
             <option value="6">DE</option>
-            <option value="4">FR</option>
+            <option value="7">FR</option>
           </select>
           <button onClick={() => fetchData(query, 1, tenantId)} className={"button"}>
             Suche
@@ -82,7 +84,7 @@ export default function Search() {
             return (
               <div key={id} className={"item"}>
                 <div className={"item__content"}>
-                  <a href={"https://20min.ch" + content.url}>
+                  <a href={`https://20min.ch${urlPrefix}${content.url}`}>
                     <div className={"item__image"}>
                       {content.image && (
                         <img
